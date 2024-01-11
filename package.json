@@ -6,7 +6,8 @@
 
   "main": "cypress.config.js",
   "scripts": {
-    "test": "cypress run"
+    "test": "cypress run",
+    "start": "npx cypress open"
   },
   "keywords": ["Testing", "Cypress.io", "Cypress Tests", "Gist Github"
   ],
