@@ -3,6 +3,7 @@ describe("Gist Github", () => {
     cy.loginToGithub();
     cy.visit("/");
   });
+
   it("should create a secret gist by typing in editor, and should then delete the gist", () => {
     const description = "Cypress test";
     const text = "This is an automatic test";
@@ -11,18 +12,18 @@ describe("Gist Github", () => {
     cy.get('input[aria-label="Gist description"]').type(description);
     cy.get('input[aria-label="Filename including extension…"]').type(fileName);
     cy.get("#code-editor").type(text);
-    cy.get("button").contains("Create secret gist").click();
+    cy.contains("button", "Create secret gist").click();
 
     const partialUrl = `/${Cypress.env("githubUsername")}/`;
     cy.url().should("include", partialUrl);
-    cy.get("a")
-      .contains(fileName)
+    cy.contains("a", fileName)
       .should("be.visible")
       .and("have.attr", "href")
       .and("includes", partialUrl);
-    cy.get('span[title="Only those with the link can see this gist."]')
-      .contains("Secret")
-      .should("be.visible");
+    cy.contains(
+      'span[title="Only those with the link can see this gist."]',
+      "Secret",
+    ).should("be.visible");
     cy.get("div #file-test-txt").should("be.visible");
 
     cy.get('.pagehead-actions button[aria-label="Delete this Gist"]').click();
@@ -36,18 +37,18 @@ describe("Gist Github", () => {
     cy.get("#code-editor").selectFile("cypress/fixtures/people.csv", {
       action: "drag-drop",
     });
-    cy.get("button").contains("Create secret gist").click();
+    cy.contains("button", "Create secret gist").click();
 
     const partialUrl = `/${Cypress.env("githubUsername")}/`;
     cy.url().should("include", partialUrl);
-    cy.get("a")
-      .contains(fileName)
+    cy.contains("a", fileName)
       .should("be.visible")
       .and("have.attr", "href")
       .and("includes", partialUrl);
-    cy.get('span[title="Only those with the link can see this gist."]')
-      .contains("Secret")
-      .should("be.visible");
+    cy.contains(
+      'span[title="Only those with the link can see this gist."]',
+      "Secret",
+    ).should("be.visible");
     cy.get("div #file-people-csv").should("be.visible");
 
     cy.get('.pagehead-actions button[aria-label="Delete this Gist"]').click();
@@ -56,13 +57,11 @@ describe("Gist Github", () => {
     cy.get('summary[aria-label="View profile and more"]')
       .find("span.dropdown-caret")
       .click();
-    cy.get("a").contains("Your gists").click();
+    cy.contains("a", "Your gists").click();
 
     const baseUrl = `https://gist.github.com/${Cypress.env("githubUsername")}`;
     cy.url().should("eq", baseUrl);
 
-    cy.get("a.UnderlineNav-item")
-      .contains("span", "All gists")
-      .should("be.visible");
+    cy.contains("a.UnderlineNav-item span", "All gists").should("be.visible");
   });
 });

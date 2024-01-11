@@ -4,18 +4,16 @@
   "description": "This project contains a Cypress test suite for automating tests related to GitHub Gists.The test suite covers both the web interface and the GitHub Gist API. It is designed to ensure the proper functionality of creating, and listing gists on GitHub.\n",
 
 
-  "main": "index.js",
+  "main": "cypress.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cypress run"
   },
   "keywords": ["Testing", "Cypress.io", "Cypress Tests", "Gist Github"
   ],
   "author": "Dania Duany <dania.duany@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "12.0.0"
-  },
-  "dependencies": {
+    "cypress": "^13.6.2",
     "prettier": "^3.1.1"
   }
 }
