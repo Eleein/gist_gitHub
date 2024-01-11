@@ -1,10 +1,9 @@
 describe("Gist Github", () => {
   beforeEach(() => {
     cy.loginToGithub();
-  });
-  it("should create a secret Gist by tapping in editor", () => {
     cy.visit("/");
-
+  });
+  it("should create a secret gist by typing in editor, and should then delete the gist", () => {
     const description = "Cypress test";
     const text = "This is an automatic test";
     const fileName = "test.txt";
@@ -28,8 +27,7 @@ describe("Gist Github", () => {
 
     cy.get('.pagehead-actions button[aria-label="Delete this Gist"]').click();
   });
-  it("should create a secret Gist by drag and drop in editor", () => {
-    cy.visit("/");
+  it("should create a secret gist by drag and drop in editor, and should then delete Gist", () => {
     const description = "Another Cypress test";
     const fileName = "people.csv";
 
@@ -55,8 +53,6 @@ describe("Gist Github", () => {
     cy.get('.pagehead-actions button[aria-label="Delete this Gist"]').click();
   });
   it("should list your gists", () => {
-    cy.visit("/");
-
     cy.get('summary[aria-label="View profile and more"]')
       .find("span.dropdown-caret")
       .click();
