@@ -8,7 +8,7 @@ Getting Started
 To get started, clone this repo, and run `npm install` in the root directory.
 
 ```sh
-git clone https://github.com/Eleein/Bunch_help_center.git](https://github.com/Eleein/gist_gitHub
+git clone https://github.com/Eleein/gist_gitHub
 cd gist_assignment
 npm install
 ```
