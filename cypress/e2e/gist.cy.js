@@ -1,4 +1,6 @@
 describe("Gist Github", () => {
+  const partialUrl = `/${Cypress.env("githubUsername")}/`;
+
   beforeEach(() => {
     cy.loginToGithub();
     cy.visit("/");
@@ -14,7 +16,6 @@ describe("Gist Github", () => {
     cy.get("#code-editor").type(text);
     cy.contains("button", "Create secret gist").click();
 
-    const partialUrl = `/${Cypress.env("githubUsername")}/`;
     cy.url().should("include", partialUrl);
     cy.contains("a", fileName)
       .should("be.visible")
@@ -39,7 +40,6 @@ describe("Gist Github", () => {
     });
     cy.contains("button", "Create secret gist").click();
 
-    const partialUrl = `/${Cypress.env("githubUsername")}/`;
     cy.url().should("include", partialUrl);
     cy.contains("a", fileName)
       .should("be.visible")
@@ -54,12 +54,13 @@ describe("Gist Github", () => {
     cy.get('.pagehead-actions button[aria-label="Delete this Gist"]').click();
   });
   it("should list your gists", () => {
+    const baseUrl = `https://gist.github.com/${Cypress.env("githubUsername")}`;
+
     cy.get('summary[aria-label="View profile and more"]')
       .find("span.dropdown-caret")
       .click();
     cy.contains("a", "Your gists").click();
 
-    const baseUrl = `https://gist.github.com/${Cypress.env("githubUsername")}`;
     cy.url().should("eq", baseUrl);
 
     cy.contains("a.UnderlineNav-item span", "All gists").should("be.visible");
